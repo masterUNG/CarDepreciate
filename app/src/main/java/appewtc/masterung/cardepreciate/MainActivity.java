@@ -20,9 +20,11 @@ public class MainActivity extends ActionBarActivity {
     private SeekBar yearSeekBar;
     private ListView myListView;
 
-    private int intSeekBar = 1;
-    private String strListView[];
+    private int intSeekBar = 1, intDep;
+    private String strListView[], strPrice, strDep;
     private ArrayList<String> objArrayList;
+    private double douPrice, douAnswer[];
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,12 +51,24 @@ public class MainActivity extends ActionBarActivity {
 
                 Log.d("poy", "endSeekBar = " + Integer.toString(intSeekBar));
 
+                getMyEditText();
+
                 createMyListView();
 
             }
         });
 
     }   // onCreate
+
+    private void getMyEditText() {
+
+        strPrice = edtPrice.getText().toString().trim();
+        strDep = edtDep.getText().toString().trim();
+
+        douPrice = Double.parseDouble(strPrice);
+        intDep = Integer.parseInt(strDep);
+
+    }   // getMyEditText
 
     private void createMyListView() {
 
@@ -74,9 +88,19 @@ public class MainActivity extends ActionBarActivity {
     }   // createMyListView
 
     private void tester() {
+
+        douAnswer = new double[intSeekBar];
+
         for (int i = 0; i < intSeekBar; i++) {
 
-            strListView[i] = "tester " + Integer.toString(i);
+            //Calculate
+
+            douAnswer[i] = (douPrice - (douPrice * intDep / 100));
+            douPrice = douAnswer[i];
+
+            Log.d("poy", "douAnswer = " + Double.toString(douAnswer[i]));
+
+            strListView[i] = Double.toString(douAnswer[i]);
 
             objArrayList.add(strListView[i]);
 
