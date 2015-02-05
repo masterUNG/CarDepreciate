@@ -5,9 +5,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SeekBar;
+
+import java.util.ArrayList;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -18,6 +21,8 @@ public class MainActivity extends ActionBarActivity {
     private ListView myListView;
 
     private int intSeekBar = 1;
+    private String strListView[];
+    private ArrayList<String> objArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +49,40 @@ public class MainActivity extends ActionBarActivity {
 
                 Log.d("poy", "endSeekBar = " + Integer.toString(intSeekBar));
 
+                createMyListView();
+
             }
         });
 
     }   // onCreate
+
+    private void createMyListView() {
+
+        strListView = new String[intSeekBar];
+
+        //Create ArrayList
+        objArrayList = new ArrayList<String>();
+
+        //Tester
+        tester();
+
+        //Create Adapter
+        ArrayAdapter<String> objAdapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, objArrayList);
+        myListView.setAdapter(objAdapter);
+
+
+    }   // createMyListView
+
+    private void tester() {
+        for (int i = 0; i < intSeekBar; i++) {
+
+            strListView[i] = "tester " + Integer.toString(i);
+
+            objArrayList.add(strListView[i]);
+
+        }   // for
+    }   // tester
+
 
     private void bindWidget() {
         edtPrice = (EditText) findViewById(R.id.edtPrice);
