@@ -2,6 +2,7 @@ package appewtc.masterung.cardepreciate;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -16,6 +17,8 @@ public class MainActivity extends ActionBarActivity {
     private SeekBar yearSeekBar;
     private ListView myListView;
 
+    private int intSeekBar = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +26,26 @@ public class MainActivity extends ActionBarActivity {
 
         //Bind Widget
         bindWidget();
+
+        //SeekBar Controller
+        yearSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                intSeekBar = progress/5;
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+                Log.d("poy", "endSeekBar = " + Integer.toString(intSeekBar));
+
+            }
+        });
 
     }   // onCreate
 
