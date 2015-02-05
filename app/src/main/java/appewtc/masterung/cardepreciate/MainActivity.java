@@ -4,15 +4,34 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.SeekBar;
 
 
 public class MainActivity extends ActionBarActivity {
+
+    //Explicit
+    private EditText edtPrice, edtDep;
+    private SeekBar yearSeekBar;
+    private ListView myListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
+
+        //Bind Widget
+        bindWidget();
+
+    }   // onCreate
+
+    private void bindWidget() {
+        edtPrice = (EditText) findViewById(R.id.edtPrice);
+        edtDep = (EditText) findViewById(R.id.edtDep);
+        yearSeekBar = (SeekBar) findViewById(R.id.seekBarYear);
+        myListView = (ListView) findViewById(R.id.mylistView);
+    }   //bindWidget
 
 
     @Override
@@ -36,4 +55,4 @@ public class MainActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-}
+}   // Main Class
